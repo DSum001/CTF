@@ -1,0 +1,100 @@
+.ctf-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  p {
+    color: #555;
+  }
+  
+  code {
+    font-family: monospace;
+    background-color: #eef;
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #007bff;
+  }
+  
+  .input-section {
+    margin-top: 20px;
+  }
+  
+  input {
+    width: calc(100% - 100px);
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .result-message {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .hint-btn {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .hint-btn:hover {
+    background-color: #f57c00;
+  }
+  
+  .hint-section {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px dashed #007bff;
+    background-color: #eef;
+    border-radius: 8px;
+    color: #007bff;
+  }
+  
+  .result-message {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .image-container {
+    display: flex;
+    padding-top: 10px;
+    justify-content: center; /* จัดรูปภาพให้อยู่กลาง */
+    gap: 20px; /* เว้นระยะห่างระหว่างรูปภาพ */
+  }
+  
+  .ctf-image {
+    width: 250px; /* ขนาดของรูปภาพ */
+    height: auto; /* คงอัตราส่วนของรูปภาพ */
+    border-radius: 8px; /* เพิ่มมุมโค้งให้กับรูปภาพ */
+  }
+  

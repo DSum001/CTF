@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  // I
 import './App.css';
 import LoginPage from './pages/login/login';
 import SymmetricEncryptionPage from './pages/symetric/symetric';
+import CTFHashPage from './pages/hash/hash';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -18,6 +19,7 @@ function App() {
           {/* Define routes for different pages */}
           <Route path="/" element={<LoginPage onLogin={handleLogin} />} />  {/* Login Page */}
           <Route path="/symmetric" element={<SymmetricEncryptionPage />} />  {/* Symmetric Encryption Page */}
+          <Route path="/hash" element={<CTFHashPage />} />  {/* Symmetric Encryption Page */}
         </Routes>
       </div>
     </Router>
