@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./stage3.css";
-import image1 from "../../assets/stage3_image1.jpg";
-import image2 from "../../assets/stage3_image2.jpg";
-import image3 from "../../assets/stage3_image3.jpg";
+import image1 from "../../assets/asym_image1.jpg";
+import image2 from "../../assets/asym_image2.jpg";
+import image3 from "../../assets/asym_image3.jpg";
 
 const ImageGallery: React.FC = () => (
   <div className="image-gallery">
@@ -12,7 +12,7 @@ const ImageGallery: React.FC = () => (
   </div>
 );
 
-const Stage3Page: React.FC = () => {
+const AsymmetricPage: React.FC = () => {
   const [userInput, setUserInput] = useState("");
   const [feedback, setFeedback] = useState("");
 
@@ -53,4 +53,4 @@ const Stage3Page: React.FC = () => {
   );
 };
 
-export default Stage3Page;
+export default AsymmetricPage;
