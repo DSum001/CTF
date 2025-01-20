@@ -4,6 +4,7 @@ import './App.css';
 import LoginPage from './pages/login/login';
 import SymmetricEncryptionPage from './pages/symetric/symetric';
 import CTFHashPage from './pages/hash/hash';
+import Stage3Page from './pages/asymetric/stage3';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<LoginPage onLogin={handleLogin} />} />  {/* Login Page */}
           <Route path="/symmetric" element={<SymmetricEncryptionPage />} />  {/* Symmetric Encryption Page */}
           <Route path="/hash" element={<CTFHashPage />} />  {/* Symmetric Encryption Page */}
+          <Route path="/stage3" element={<Stage3Page />} />  {/* Asymmetric Encryption Page */}
         </Routes>
       </div>
     </Router>
