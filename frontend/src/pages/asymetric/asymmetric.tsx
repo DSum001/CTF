@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./stage3.css";
+import "./asymmetric.css";
 import image1 from "../../assets/asym_image1.jpg";
 import image2 from "../../assets/asym_image2.jpg";
 import image3 from "../../assets/asym_image3.jpg";
@@ -20,7 +20,7 @@ const AsymmetricPage: React.FC = () => {
 
   const checkAnswer = () => {
     if (parseInt(userInput) === Answer) {
-      setFeedback("Correct! You've passed this stage.");
+      setFeedback("Correct! You've passed this Asymmetric Challenge.");
     } else {
       setFeedback("Incorrect. Please try again.");
     }
@@ -28,10 +28,11 @@ const AsymmetricPage: React.FC = () => {
 
   return (
     <div className="stage3-container">
-      <h1>Stage 3: Find the Plaintext</h1>
+      <h1>Asymmetric Challenge: Find the Plaintext from these images and cipher text</h1>
       <ImageGallery />
       <div className="stage3-form">
-        <label htmlFor="answer-input">Enter your answer:</label>
+        <p>Cipher Text: 180</p>
+        <label htmlFor="answer-input">Enter your answer</label>
         <input
           id="answer-input"
           value={userInput}
@@ -40,9 +41,9 @@ const AsymmetricPage: React.FC = () => {
           aria-label="Answer input"
         />
         <button onClick={checkAnswer}>Submit</button>
-        <p>Cipher Text: 180</p>
         <p>Hint 1: The first image suggests a method to find the answer.</p>
         <p>Hint 2: Other images provide values to calculate the answer.</p>
+        <p>Suggestion: Open image in new tab for better view</p>
         {feedback && (
           <p className={feedback.includes("Correct") ? "feedback-correct" : "feedback-incorrect"}>
             {feedback}

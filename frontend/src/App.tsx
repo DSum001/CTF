@@ -5,7 +5,7 @@ import LoginPage from "./pages/login/login";
 import SymmetricEncryptionPage from "./pages/symetric/symetric";
 import CTFHashPage from "./pages/hash/hash";
 import Substitution from "./pages/sub/sub";
-import AsymmetricPage from "./pages/asymetric/stage3";
+import AsymmetricPage from "./pages/asymetric/asymmetric";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);

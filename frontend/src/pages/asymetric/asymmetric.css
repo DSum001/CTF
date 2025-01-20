@@ -43,6 +43,7 @@ h1 {
   height: 150px;
   border-radius: var(--border-radius);
   object-fit: cover;
+  border: 1px solid red;
 }
 
 .stage3-form {
