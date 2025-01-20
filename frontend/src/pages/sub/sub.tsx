@@ -50,7 +50,7 @@ function Substitution() {
           โจทย์ปัญหา:
         </h2>
         <p className="text-gray-300">
-          <span className="px-3">
+          <span className="px-2">
             หา alphabet ให้ครบก่อนถอดรหัส โดยคำซ่อนอยู่ในรูป ลองมองไปที่รูป
             แล้วคิดตื้น ๆ ถ้าคิดได้แล้วโหลดไฟล์เพื่อถอดรหัสได้เลยยย
           </span>
@@ -67,27 +67,36 @@ function Substitution() {
         </p>
 
         {showHint && (
-          <div className="mt-4 p-4 bg-gray-700 rounded-lg">
-            <p className="text-gray-300">มทส อยู่ในจังหวัด?</p>
-            <p className="text-gray-300">
-              <a
-                href="https://quipqiup.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ตัวช่วย1
-              </a>
-            </p>
-            <p className="text-gray-300">
-              <a
-                href="https://www.dcode.fr/monoalphabetic-substitution"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ตัวช่วย2
-              </a>
-            </p>
-          </div>
+          <>
+            <div className="bg-[#2d2d2d] border-l-4 border-[#2196f3] p-4 rounded">
+              <p className="text-gray-300">
+                <span className="text-[#2196f3] font-semibold">คำใบ้:</span> มทส
+                อยู่ในจังหวัด?
+              </p>
+
+              <p className="text-gray-300">
+                <span className="text-[#2196f3] font-semibold">ตัวช่วย:</span>{" "}
+                <a
+                  href="https://quipqiup.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-500 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                >
+                  เว็บถอดรหัส1
+                </a>
+                <span className="mx-2 text-gray-400">|</span>{" "}
+                {/* เพิ่มเครื่องหมายกั้น */}
+                <a
+                  href="https://www.dcode.fr/monoalphabetic-substitution"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-500 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                >
+                  เว็บถอดรหัส2
+                </a>
+              </p>
+            </div>
+          </>
         )}
 
         {solved && (
