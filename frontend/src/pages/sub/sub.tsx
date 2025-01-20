@@ -9,7 +9,7 @@ function Substitution() {
   const [errorMessage, setErrorMessage] = useState(""); // Added state for error message
 
   const alphabet = "NDFY*LXSC*PMIB*WVEJ*GHZ*UQ";
-  const challengeFlag = "SUT{y0u_f0und_th3_s3cr3t}";
+  const challengeFlag = "SUT{y0u_f0u4d_th3_s3cr3t}";
 
   const handleAnswerChange = (e: any) => {
     setAnswer(e.target.value); // Update the answer state when user types
@@ -50,18 +50,46 @@ function Substitution() {
           โจทย์ปัญหา:
         </h2>
         <p className="text-gray-300">
-          เอ๊ะ! วันนี้ฉันจำได้ว่าฉันมีสอบวิชา Cyber Security
-          แต่ก่อนจะเข้าห้องสอบได้นั้นต้องผ่านประตูที่มีรหัสผ่านโดยมันถูกเข้ารหัสด้วยวิธี
-          Substitution Cipher แต่ฉันพึ่งเรียนวิชา Computer Communication
-          นี่ก็สายมากแล้ว ฉันต้องทำยังไงเพื่อจะเข้าห้องทันเวลากันนะ!!!???
-          โหลดไฟล์ที่นี่
+          <span className="px-3">
+            หา alphabet ให้ครบก่อนถอดรหัส โดยคำซ่อนอยู่ในรูป ลองมองไปที่รูป
+            แล้วคิดตื้น ๆ ถ้าคิดได้แล้วโหลดไฟล์เพื่อถอดรหัสได้เลยยย
+          </span>
+
+          <a
+            href="./message.txt"
+            download="message.txt"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+          >
+            โหลดไฟล์ที่นี่
+          </a>
         </p>
 
         {showHint && (
           <div className="mt-4 p-4 bg-gray-700 rounded-lg">
             <p className="text-gray-300">มทส อยู่ในจังหวัด?</p>
+            <p className="text-gray-300">
+              <a
+                href="https://quipqiup.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ตัวช่วย1
+              </a>
+            </p>
+            <p className="text-gray-300">
+              <a
+                href="https://www.dcode.fr/monoalphabetic-substitution"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ตัวช่วย2
+              </a>
+            </p>
           </div>
         )}
+
         {solved && (
           <div className="mt-4 p-4 bg-green-600 rounded-lg">
             🎉 Congratulations! You've found the flag: {challengeFlag}
@@ -72,7 +100,9 @@ function Substitution() {
       <section className="grid gap-6">
         <div className="bg-gray-800 p-6 rounded-lg">
           <div className="flex justify-center mb-4 px-20">
-            <label className="font-semibold text-lg">Alphabet:</label>
+            <label className="font-semibold text-lg text-white">
+              Alphabet:
+            </label>
             <span className="font-bold text-xl text-yellow-500 ml-2">
               {alphabet}
             </span>
@@ -103,7 +133,7 @@ function Substitution() {
               value={answer}
               onChange={handleAnswerChange}
               className="w-full bg-gray-700 p-4 rounded font-mono text-lg text-gray-200"
-              placeholder="Format flag: SUT{****_****_****}"
+              placeholder="Format flag: SUT{************}"
             />
             <button
               onClick={checkAnswer}

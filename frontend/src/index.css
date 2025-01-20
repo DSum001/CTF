@@ -7,37 +7,3 @@
     grid-template-columns: repeat(26, minmax(0, 1fr));
   }
 }
-
-@layer base {
-  body {
-    @apply bg-[#161616] text-gray-200;
-  }
-}
-
-.terminal-header {
-  @apply bg-[#1a1a1a] border-b border-[#2d2d2d] px-4 py-2 flex items-center;
-}
-
-.terminal-dots {
-  @apply flex gap-2;
-}
-
-.terminal-dot {
-  @apply w-3 h-3 rounded-full;
-}
-
-.terminal-content {
-  @apply bg-[#1a1a1a] rounded-lg border border-[#2d2d2d];
-}
-
-.btn-primary {
-  @apply bg-[#2196f3] hover:bg-[#1e88e5] text-white px-4 py-2 rounded-md transition-colors duration-200;
-}
-
-.btn-secondary {
-  @apply bg-[#2d2d2d] hover:bg-[#3d3d3d] text-white px-4 py-2 rounded-md transition-colors duration-200;
-}
-
-.input-primary {
-  @apply bg-[#2d2d2d] border border-[#3d3d3d] text-white px-4 py-2 rounded-md focus:outline-none focus:border-[#2196f3] transition-colors duration-200;
-}
