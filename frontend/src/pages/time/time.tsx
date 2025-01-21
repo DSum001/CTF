@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'; // Use for navigation to the nex
 const CurrentTimePage: React.FC = () => {
   const [currentTime, setCurrentTime] = useState<string>('');
   const [currentMinute, setCurrentMinute] = useState<string>('');
+  const [gameMessage, setGameMessage] = useState<string>('');
   const [encodedMessage, setEncodedMessage] = useState<string>('');
   const [userAnswer, setUserAnswer] = useState<string>('');
   const [hintMessage, setHintMessage] = useState<string>('');
@@ -45,8 +46,6 @@ const CurrentTimePage: React.FC = () => {
       .join('');
   };
 
-  console.log(encodedMessage);
-
   const handleHint = () => {
     setHintMessage("Hint:ในรูปมีอะไรและทุกนาทีมีค่า มีค่าจริงๆ.");
   };
@@ -54,7 +53,7 @@ const CurrentTimePage: React.FC = () => {
   const handleSubmit = () => {
     if (userAnswer === encodedMessage.toLocaleUpperCase() || userAnswer === encodedMessage.toLocaleLowerCase()) {
       setErrorMessage('');
-      message.success('Correct answer! Redirecting to the next page...');
+      setGameMessage('Correct answer! Redirecting to the next page 🎉🎉🎉');
       setTimeout(() => {
         navigate('/substitution'); // Redirect to the next page after 3 seconds
       }, 2000);
@@ -71,10 +70,11 @@ const CurrentTimePage: React.FC = () => {
         <span className="text-red-500">{currentTime.split(':')[1]}</span>:
         <span>{currentTime.split(':')[2]}</span>
       </div>
-      <p className="mt-4 text-lg">ทุกนาทีมีค่า</p>
+      <p className="mt-4 text-lg">ใช้ชีวิตต้องเต็มที่เพราะ ทุกนาทีมีค่า</p>
       <div className="mt-6">
         <img src="src/assets/download.png" alt="Helpful visualization" className="mt-4 max-w-xs rounded" />
       </div>
+      {gameMessage && <div className="mt-4 text-green-400 font-semibold text-xl">{gameMessage}</div>}
       <div className="mt-6 w-full max-w-md" style={{ display: 'flex', flexDirection: 'column' }}>
         <input
           type="text"

@@ -37,7 +37,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
   };
 
   const handleHintRequest = () => {
-    setHintMessage('Hint: คุณอาจมองไมเห็นเพราะมันกลมกลืนกว่าที่จะมองเห็น ');
+    setHintMessage('Hint: คุณอาจมองไมเห็นเพราะมันกลมกลืนกว่าที่จะมองเห็น เมื่อคุณเห็นข้อความแล้วแต่มันอาจจะยังไม่ใช่คำตอบทีถูกต้องลองสังเกตที่ช่องคำตอบ');
   };
 
   const startGame = () => {
@@ -51,7 +51,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           <div>
             <h1 className="text-4xl font-bold mb-6">Welcome! Ready to Play?</h1>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
               onClick={startGame}
             >
               Press to Start
@@ -59,7 +59,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           </div>
         ) : (
           <>
-            <h1 className='text-gray-800'>ENG23 4041</h1>
+            <h1 className='text-gray-800 text-xl'>ENG23 4041</h1>
             <h2 className="text-3xl font-semibold mb-4  text-white">Find Password This Page</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="flex items-center space-x-2">
@@ -75,7 +75,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 <button
                   type="button"
                   onClick={() => setShowPassword((prev) => !prev)}
-                  className="text-sm text-blue-400 hover:underline"
+                  className="text-sm text-blue-900 hover:underline bg-white"
                 >
                   {showPassword ? 'Hide Password' : 'Show Password'}
                 </button>
@@ -88,7 +88,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 Login
               </button>
             </form>
-
             <div className="mt-4">
               {hintMessage && <p className="text-yellow-400 text-sm mb-2">{hintMessage}</p>}
               <button
