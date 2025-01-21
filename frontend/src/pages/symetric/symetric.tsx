@@ -1,121 +1,151 @@
 import React, { useState } from 'react';
-import CryptoJS from 'crypto-js';
+import { Button, Input, Typography, Space, Row, Col, message, Card, Alert } from 'antd';
+import { LockOutlined, UnlockOutlined, KeyOutlined } from '@ant-design/icons';
 import './symetric.css';
 
-const SymmetricEncryptionPage: React.FC = () => {
-  const [password, setPassword] = useState<string>('');
-  const [hashedPassword, setHashedPassword] = useState<string>('');
-  const [encryptedMessage, setEncryptedMessage] = useState<string>('');
-  const [decryptedMessage, setDecryptedMessage] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [isEncrypted, setIsEncrypted] = useState<boolean>(false);
+const { Title, Text } = Typography;
 
-  // Secret message to encrypt
-  const secretMessage = "Welcome to the Symmetric Encryption Game!";
-  
-  // Hash the password input using SHA-256
-  const handleHashPassword = () => {
-    if (password === '') {
-      setErrorMessage('Please enter a password!');
-      return;
+const Symmetric = () => {
+  const [shift, setShift] = useState(3); // ค่าการเลื่อนเริ่มต้น
+  const [messageToEncrypt, setMessageToEncrypt] = useState('');
+  const [encryptedMessage, setEncryptedMessage] = useState('');
+  const [decryptedMessage, setDecryptedMessage] = useState('');
+  const [userInput, setUserInput] = useState('');
+  const [error, setError] = useState(false);
+
+  const encryptMessage = (message: string, shift: number): string => {
+    let result = '';
+    for (let i = 0; i < message.length; i++) {
+      let char = message[i];
+      if (char.match(/[a-zA-Z]/)) {
+        const charCode = message.charCodeAt(i);
+        const shiftBase = char.toLowerCase() === char ? 97 : 65;
+        result += String.fromCharCode(((charCode - shiftBase + shift) % 26) + shiftBase);
+      } else {
+        result += char;
+      }
     }
-
-    // Hash password using SHA-256
-    const hashed = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
-    setHashedPassword(hashed);
-    setErrorMessage('');
+    return result;
   };
 
-  // Encrypt the message using the hashed password
+  const decryptMessage = (message: string, shift: number): string => {
+    let result = '';
+    for (let i = 0; i < message.length; i++) {
+      let char = message[i];
+      if (char.match(/[a-zA-Z]/)) {
+        const charCode = message.charCodeAt(i);
+        const shiftBase = char.toLowerCase() === char ? 97 : 65;
+        result += String.fromCharCode(((charCode - shiftBase - shift + 26) % 26) + shiftBase);
+      } else {
+        result += char;
+      }
+    }
+    return result;
+  };
+
+  // ฟังก์ชันในการจัดการการเข้ารหัส
   const handleEncrypt = () => {
-    if (hashedPassword === '') {
-      setErrorMessage('Please hash the password before encrypting!');
-      return;
+    if (messageToEncrypt) {
+      const encrypted = encryptMessage(messageToEncrypt, shift);
+      setEncryptedMessage(encrypted);
+      setError(false);
+    } else {
+      message.error('กรุณากรอกข้อความที่ต้องการเข้ารหัส');
     }
-
-    const encrypted = CryptoJS.AES.encrypt(secretMessage, hashedPassword).toString();
-    setEncryptedMessage(encrypted);
-    setDecryptedMessage('');
-    setIsEncrypted(true);
-    setErrorMessage('');
   };
 
-  // Decrypt the message using the hashed password
+  // ฟังก์ชันในการจัดการการถอดรหัส
   const handleDecrypt = () => {
-    if (hashedPassword === '') {
-      setErrorMessage('Please hash the password before decrypting!');
-      return;
-    }
-
-    const bytes = CryptoJS.AES.decrypt(encryptedMessage, hashedPassword);
-    const originalMessage = bytes.toString(CryptoJS.enc.Utf8);
-
-    if (originalMessage === secretMessage) {
-      setDecryptedMessage(originalMessage);
-      setErrorMessage('');
+    // Decrypt the encrypted message
+    const decrypted = decryptMessage(encryptedMessage, shift);
+    
+    if (userInput === decrypted) {
+      message.success('ยินดีด้วย! คุณถอดรหัสได้ถูกต้อง');
     } else {
-      setErrorMessage('Failed to decrypt the message. Check the password!');
-      setDecryptedMessage('');
+      setError(true);
+      message.error('ข้อความที่ถอดรหัสไม่ถูกต้อง');
     }
+  };
+
+  // ฟังก์ชันในการแสดงการเดา
+  const handleGenerateFlag = () => {
+    const randomMessage = 'This is a secret message'; // ข้อความที่ต้องการให้เดา
+    const encryptedFlag = encryptMessage(randomMessage, shift);
+    setEncryptedMessage(encryptedFlag);
+    setDecryptedMessage(randomMessage);
   };
 
   return (
-    <div className="encryption-container">
-      <h2>Symmetric Encryption Game</h2>
+    <div className="symmetric-container">
+      <Row justify="center" style={{ marginBottom: 20 }}>
+        <Col span={12}>
+          <Card title="CTF - Shift Cipher" bordered={false}>
+            <Space direction="vertical" style={{ width: '100%' }}>
+              <Title level={3}>เข้ารหัสข้อความ</Title>
+              <Input
+                placeholder="กรอกข้อความที่จะเข้ารหัส"
+                value={messageToEncrypt}
+                onChange={(e) => setMessageToEncrypt(e.target.value)}
+                style={{ marginBottom: 10 }}
+              />
+              <Button
+                type="primary"
+                icon={<LockOutlined />}
+                onClick={handleEncrypt}
+                block
+              >
+                เข้ารหัสข้อความ
+              </Button>
 
-      <p>Hash your password and use it to encrypt/decrypt the secret message!</p>
+              {encryptedMessage && (
+                <div style={{ marginTop: 20 }}>
+                  <Alert
+                    message="ข้อความที่เข้ารหัส"
+                    description={encryptedMessage}
+                    type="success"
+                    showIcon
+                  />
+                </div>
+              )}
 
-      <div className="input-section">
-        {/* Input for password */}
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
-          className="input-field"
-        />
-        <button onClick={handleHashPassword} className="action-btn">
-          Hash Password
-        </button>
-      </div>
+              <Title level={4} style={{ marginTop: 20 }}>
+                ถอดรหัสข้อความ
+              </Title>
+              <Input
+                placeholder="กรอกข้อความที่ถอดรหัส"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                style={{ marginBottom: 10 }}
+              />
+              <Button
+                type="primary"
+                icon={<UnlockOutlined />}
+                onClick={handleDecrypt}
+                block
+              >
+                ถอดรหัสข้อความ
+              </Button>
 
-      {/* Display the hashed password */}
-      {hashedPassword && (
-        <div>
-          <h3>Your Hashed Password:</h3>
-          <textarea readOnly value={hashedPassword} className="result-field" />
-        </div>
-      )}
-
-      <div className="button-section">
-        <button onClick={handleEncrypt} className="action-btn" disabled={!hashedPassword}>
-          Encrypt Secret Message
-        </button>
-        <button onClick={handleDecrypt} className="action-btn" disabled={!isEncrypted}>
-          Try to Decrypt
-        </button>
-      </div>
-
-      {/* Show error message */}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      {/* Show the encrypted message */}
-      {isEncrypted && (
-        <div className="result-section">
-          <h3>Encrypted Message:</h3>
-          <textarea readOnly value={encryptedMessage} className="result-field" />
-        </div>
-      )}
-
-      {/* Show decrypted message */}
-      {decryptedMessage && (
-        <div className="result-section">
-          <h3>Decrypted Message:</h3>
-          <textarea readOnly value={decryptedMessage} className="result-field" />
-        </div>
-      )}
+              {error && (
+                <Text type="danger" style={{ marginTop: 10 }}>
+                  ข้อความไม่ถูกต้อง กรุณาลองใหม่
+                </Text>
+              )}
+              <Button
+                type="dashed"
+                icon={<KeyOutlined />}
+                onClick={handleGenerateFlag}
+                style={{ marginTop: 20 }}
+                block
+              >
+                สร้าง Flag ใหม่
+              </Button>
+            </Space>
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 };
 
-export default SymmetricEncryptionPage;
+export default Symmetric;

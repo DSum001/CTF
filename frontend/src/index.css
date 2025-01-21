@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,3 +8,5 @@
     grid-template-columns: repeat(26, minmax(0, 1fr));
   }
 }
+=======
+>>>>>>> Stashed changes
