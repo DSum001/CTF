@@ -6,6 +6,7 @@ import Symmetric from "./pages/symetric/symetric";
 import CTFHashPage from "./pages/hash/hash";
 import Substitution from "./pages/sub/sub";
 import AsymmetricPage from "./pages/asymetric/asymmetric";
+import Time from "./pages/time/time";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -30,6 +31,7 @@ function App() {
           <Route path="/substitution" element={<Substitution />} />{" "}
           {/* Symmetric Encryption Page */}
           <Route path="/asymmetric" element={<AsymmetricPage />} />  {/* Asymmetric Encryption Page */}
+          <Route path="/time" element={<Time />} />  {/* Time Page */}
 
         </Routes>
       </div>
