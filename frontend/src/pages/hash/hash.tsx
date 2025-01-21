@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import CryptoJS from "crypto-js";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./hash.css";
 
 const CTFHashChallenge: React.FC = () => {
-    // Hash เป้าหมายที่กำหนดไว้ (ตัวอย่าง: MD5 ของ "ilovecyber")
+    const navigate = useNavigate(); // ใช้สำหรับการเปลี่ยนหน้า
+
     const targetHash = "d0d90090204b44d47d516f835538d5fe";
 
     const [inputValue, setInputValue] = useState<string>(""); // ข้อความที่ผู้เล่นป้อน
@@ -22,41 +24,38 @@ const CTFHashChallenge: React.FC = () => {
         const userHash = CryptoJS.MD5(inputValue.trim()).toString();
 
         if (userHash === targetHash) {
-            setResultMessage("🎉 Correct! The plaintext is: " + inputValue.trim());
+            setResultMessage("🎉 Correct! Redirecting to the next challenge...");
+            setTimeout(() => {
+                navigate("/time"); // เปลี่ยนหน้าไปยัง /time หลังจาก 2 วินาที
+            }, 2000);
         } else {
             setResultMessage("❌ Incorrect! Try again.");
         }
     };
 
-    // แสดงคำใบ้
     const handleShowHint = () => {
         setShowHint(true);
         setHintUsed(true);
     };
 
-    // แสดงเฉพาะส่วนของ targetHash โดยซ่อนเลข 9
-    const targetHashDisplay = targetHash.replace(/5/g, "*"); // แทนที่เลข 9 ด้วยเครื่องหมาย *
+    const targetHashDisplay = targetHash.replace(/5/g, "*");
 
     return (
         <div className="ctf-container">
             <h2>CTF Challenge: Find the Plaintext</h2>
             <p>
-            นำค่าที่ได้จากรูปภาพไปแทนที่ใน * เพื่อนำค่าhash ไปหาplaintext 
+                นำค่าที่ได้จากรูปภาพไปแทนที่ใน * เพื่อนำค่า hash ไปหา plaintext 
                 <br />
                 (ใช้เว็บไซต์ภายนอกเพื่อหาคำตอบได้)
                 <br />
                 <code>{targetHashDisplay}</code>
-
             </p>
 
-            {/* เพิ่มรูปภาพที่ต้องการ */}
             <div className="image-container">
                 <img src="https://file.baanbaan.co/story/o/637937292077076776-IMG_8766.jpg" alt="Image 1" className="ctf-image" />
                 <img src="https://sutgateway.sut.ac.th/admissions2021/wp-content/uploads/2021/08/DSCF8747.jpg" alt="Image 2" className="ctf-image" />
             </div>
 
-
-            {/* ช่องป้อนข้อความ */}
             <div className="input-section">
                 <input
                     type="text"
@@ -67,21 +66,19 @@ const CTFHashChallenge: React.FC = () => {
                 <button onClick={handleSubmit}>Submit</button>
             </div>
 
-            {/* ปุ่มสำหรับแสดงคำใบ้ */}
             {!showHint && (
                 <button onClick={handleShowHint} className="hint-btn">
                     Get a Hint 
                 </button>
             )}
 
-            {/* แสดงคำใบ้ */}
             {showHint && (
                 <div className="hint-section">
-                    <h3>Hint(รูปภาพ):</h3>
+                    <h3>Hint (รูปภาพ):</h3>
                     <p>
                         ศูนย์ไม่มีความหมาย
                         <br />
-                        ลองใช้เครื่องมือถอดรหัสออนไลน์ เช่น 
+                        ลองใช้เครื่องมือถอดรหัสออนไลน์ เช่น{" "}
                         <a href="https://crackstation.net/" target="_blank" rel="noopener noreferrer">
                             CrackStation.net
                         </a>
@@ -89,7 +86,6 @@ const CTFHashChallenge: React.FC = () => {
                 </div>
             )}
 
-            {/* แสดงผลลัพธ์ */}
             {resultMessage && <p className="result-message">{resultMessage}</p>}
         </div>
     );

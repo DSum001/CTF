@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { KeyRound, HelpCircle } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import pic from "../../assets/CTF158.jpg";
-
+import { useNavigate } from 'react-router-dom';
 function Substitution() {
   const [showHint, setShowHint] = useState(false);
   const [solved, setSolved] = useState(false);
   const [answer, setAnswer] = useState(""); // Added state for answer
   const [errorMessage, setErrorMessage] = useState(""); // Added state for error message
+  const navigate = useNavigate();
 
   const alphabet = "NDFY*LXSC*PMIB*WVEJ*GHZ*UQ";
   const challengeFlag = "SUT{y0u_f0u4d_th3_s3cr3t}";
@@ -20,11 +21,15 @@ function Substitution() {
     if (answer === challengeFlag) {
       setSolved(true); // Set solved to true if the answer is correct
       setErrorMessage(""); // Clear error message if the answer is correct
+      setTimeout(() => {
+        navigate("/symmetric"); // Redirect to the next page after 2 seconds
+      }, 2000);
     } else {
       setErrorMessage("Incorrect answer. Please try again!"); // Display error message if the answer is incorrect
       setSolved(false); // Set solved to false if the answer is incorrect
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-white p-10 flex flex-col items-center">
@@ -81,11 +86,13 @@ function Substitution() {
           </>
         )}
 
-        {solved && (
-          <div className="mt-4 p-4 bg-green-600 rounded-lg">
-            🎉 Congratulations! You've found the flag: {challengeFlag}
-          </div>
-        )}
+{solved && (
+  <div className="mt-4 p-4 bg-green-600 rounded-lg">
+    🎉 Congratulations! You've found the flag: {challengeFlag}
+    <p className="mt-2 text-white">Redirecting to the next challenge...</p>
+  </div>
+)}
+
       </section>
 
       <section className="grid gap-6 w-full max-w-2xl">
