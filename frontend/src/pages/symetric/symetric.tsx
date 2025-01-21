@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, HelpCircle, X } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 const Symmetric = () => {
   const [inputValue, setInputValue] = useState("");
@@ -8,6 +9,7 @@ const Symmetric = () => {
   const [correctAnswer, setCorrectAnswer] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (e: any) => {
     setInputValue(e.target.value);
@@ -20,6 +22,7 @@ const Symmetric = () => {
     if (inputValue === "21") {
       setMessage("🎉 Congratulations! You've successfully cracked the code!");
       setCorrectAnswer(true);
+      setTimeout(() => navigate('/asymmetric'), 2000);
     } else {
       setMessage("❌ Incorrect code. Keep trying!");
       setCorrectAnswer(false);
