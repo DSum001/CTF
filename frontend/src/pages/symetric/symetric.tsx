@@ -53,7 +53,7 @@ const Symmetric = () => {
           >
             <HelpCircle className="w-6 h-6 text-emerald-300" />
             <span className="absolute invisible group-hover:visible -top-14 right-0 w-32 bg-slate-800 text-emerald-300 text-sm rounded-lg py-2 px-3 shadow-xl">
-              {hintVisible ? "Hide Hint" : "Show Hint"}
+              {hintVisible ? "แสดงคำใบ้" : "ปิดคำใบ้"}
             </span>
           </button>
         </div>
