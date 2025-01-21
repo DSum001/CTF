@@ -41,8 +41,9 @@ const CTFHashChallenge: React.FC = () => {
         <div className="ctf-container">
             <h2>CTF Challenge: Find the Plaintext</h2>
             <p>
-            นำค่าที่ได้จากรูปภาพไปแทนที่ใน *
-            เพื่อนำค่าhash ไปหาplaintext
+            นำค่าที่ได้จากรูปภาพไปแทนที่ใน * เพื่อนำค่าhash ไปหาplaintext 
+                <br />
+                (ใช้เว็บไซต์ภายนอกเพื่อหาคำตอบได้)
                 <br />
                 <code>{targetHashDisplay}</code>
 
@@ -79,6 +80,11 @@ const CTFHashChallenge: React.FC = () => {
                     <h3>Hint(รูปภาพ):</h3>
                     <p>
                         ศูนย์ไม่มีความหมาย
+                        <br />
+                        ลองใช้เครื่องมือถอดรหัสออนไลน์ เช่น 
+                        <a href="https://crackstation.net/" target="_blank" rel="noopener noreferrer">
+                            CrackStation.net
+                        </a>
                     </p>
                 </div>
             )}

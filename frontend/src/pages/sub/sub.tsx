@@ -27,25 +27,17 @@ function Substitution() {
   };
 
   return (
-    <div className="min-h-screen bg-white p-10">
-      <header className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-2 flex-1">
-          <KeyRound className="w-10 h-10 text-yellow-400" />
-          <h1 className="text-3xl font-bold text-blue-600">
-            Substitution Cipher Challenge
-          </h1>
-        </div>
-        <div className="flex items-center justify-center gap-2">
+    <div className="min-h-screen bg-white p-10 flex flex-col items-center">
+      <section className="bg-gray-800 p-4 rounded-lg mb-6 w-full max-w-2xl">
+        <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => setShowHint(!showHint)}
-            className="bg-transparent p-0 border-none hover:bg-white"
+            className="bg-transparent p-0 border-none hover:bg-white ml-auto"
           >
             <HelpCircle className="w-8 h-8 text-yellow-400" />
           </button>
         </div>
-      </header>
 
-      <section className="bg-gray-800 p-4 rounded-lg mb-6">
         <h2 className="text-xl font-semibold mb-2 text-zinc-300 text-left">
           โจทย์ปัญหา:
         </h2>
@@ -82,17 +74,7 @@ function Substitution() {
                   rel="noopener noreferrer"
                   className="text-blue-400 hover:text-blue-500 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                 >
-                  เว็บถอดรหัส1
-                </a>
-                <span className="mx-2 text-gray-400">|</span>{" "}
-                {/* เพิ่มเครื่องหมายกั้น */}
-                <a
-                  href="https://www.dcode.fr/monoalphabetic-substitution"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-500 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                >
-                  เว็บถอดรหัส2
+                  แนะนำเว็บถอดรหัส
                 </a>
               </p>
             </div>
@@ -106,7 +88,7 @@ function Substitution() {
         )}
       </section>
 
-      <section className="grid gap-6">
+      <section className="grid gap-6 w-full max-w-2xl">
         <div className="bg-gray-800 p-6 rounded-lg">
           <div className="flex justify-center mb-4 px-20">
             <label className="font-semibold text-lg text-white">
@@ -133,28 +115,32 @@ function Substitution() {
         </div>
 
         <div className="gap-6">
-          <div className="bg-gray-800 p-6 rounded-lg">
-            <h2 className="text-xl font-semibold mb-4 text-left text-white">
-              Answer:
-            </h2>
-            <input
-              type="text"
-              value={answer}
-              onChange={handleAnswerChange}
-              className="w-full bg-gray-700 p-4 rounded font-mono text-lg text-gray-200"
-              placeholder="Format flag: SUT{************}"
-            />
-            <button
-              onClick={checkAnswer}
-              className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
-            >
-              Submit Answer
-            </button>
-            {errorMessage && (
-              <div className="mt-4 text-red-500 text-lg">{errorMessage}</div>
-            )}
-          </div>
-        </div>
+  <div className="bg-gray-800 p-6 rounded-lg">
+    <div className="flex items-center gap-4">
+      <h2 className="text-xl font-semibold text-white">Answer:</h2>
+      <input
+  type="text"
+  value={answer}
+  onChange={handleAnswerChange}
+  className="w-96 bg-gray-700 p-2 rounded font-mono text-lg text-gray-200"
+  placeholder="Format: SUT{***_*****_***_******}"
+/>
+
+      <button
+        onClick={checkAnswer}
+        className="bg-blue-600 text-white px-4 py-2 rounded"
+      >
+        Submit
+      </button>
+    </div>
+    {errorMessage && (
+      <div className="mt-4 text-red-500 text-lg">{errorMessage}</div>
+    )}
+  </div>
+</div>
+
+
+
       </section>
     </div>
   );
