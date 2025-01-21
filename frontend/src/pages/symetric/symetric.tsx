@@ -70,7 +70,7 @@ const Symmetric = () => {
               <div className="flex items-center space-x-3">
                 <AlertCircle className="w-6 h-6 text-emerald-400 flex-shrink-0" />
                 <p className="text-emerald-200 font-medium text-lg">
-                  คำตอบคือตัวเลขอะไรน้าาา 🤔
+                  คำตอบคือเลขอะไรน้าาา 🤔
                 </p>
               </div>
             </div>
