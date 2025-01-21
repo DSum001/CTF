@@ -1,4 +1,3 @@
-import { message } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Use for navigation to the next page
 
